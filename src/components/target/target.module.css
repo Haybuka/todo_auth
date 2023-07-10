@@ -1,0 +1,21 @@
+.modal_sub {
+  @apply fixed w-full md:w-2/5 py-10 px-6 bg-white shadow-lg top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10;
+}
+
+.modal::after {
+  content: '';
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 100%;
+}
+
+.targets {
+  @apply p-3 my-3 mx-4 flex justify-between items-center bg-white rounded-lg cursor-pointer hover:shadow-lg transition-all;
+}
+
+.footer {
+  @apply text-center py-3 bg-gray-900 text-white flex justify-center cursor-pointer;
+}

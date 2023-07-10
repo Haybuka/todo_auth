@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Select from '../components/select';
 import LoginForm from '../components/form';
 import profileImg from '../images/Arya.webp';
+import Container from '../components/container';
 export type AccountType = {
   name: string;
   value: string;
@@ -20,7 +21,7 @@ const Login = () => {
     setAccountName(profile);
   };
   return (
-    <section className="w-[380px] shadow-lg bg-white p-2 rounded-lg">
+    <Container>
       <Select accountChange={handleAccountChange} />
       <p className="my-6 overflow-hidden">
         <img
@@ -34,7 +35,7 @@ const Login = () => {
       </h3>
       <LoginForm account={profile} />
       <p className="text-center text-blue-800 my-3">unable to log in?</p>
-    </section>
+    </Container>
   );
 };
 
