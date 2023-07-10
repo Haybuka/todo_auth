@@ -8,6 +8,9 @@ import styles from './target.module.css';
 import cls from 'classnames';
 
 import Container from '../container';
+import CheckIcon from '../Icons/check';
+import CancelIcon from '../Icons/cancel';
+
 type Target = { name: string; completed: boolean; id: number };
 
 type TargetsType = {
@@ -47,6 +50,11 @@ const Targets = () => {
     );
     setTargets(newTargets);
   };
+
+  const handleDelete = (id: number) => {
+    const newTargets = targets.filter((target) => target.id !== id);
+    setTargets(newTargets);
+  };
   return (
     <>
       <Container>
@@ -59,22 +67,29 @@ const Targets = () => {
             <DotsIcon />
           </div>
         </aside>
-        <aside className="min-h-[400px]">
+        <article className="min-h-[400px]">
           {targets.map((target, id) => (
-            <div
+            <section
               key={id}
               className={
                 !target.completed
                   ? cls(styles.targets)
                   : cls(styles.targets, 'line-through text-gray-500')
               }
-              onClick={() => handleCompleted(target.id)}
             >
-              <p>{target.name}</p>
-              <input type="radio" checked={target.completed} />
-            </div>
+              <h4>{target.name}</h4>
+
+              <div className="flex w-14 justify-between">
+                <aside onClick={() => handleCompleted(target.id)}>
+                  {target.completed ? <CheckIcon /> : <input type="radio" />}
+                </aside>
+                <aside onClick={() => handleDelete(target.id)}>
+                  <CancelIcon />
+                </aside>
+              </div>
+            </section>
           ))}
-        </aside>
+        </article>
         <footer className={styles.footer} onClick={handleModalOpen}>
           <PlusIcon />
 
