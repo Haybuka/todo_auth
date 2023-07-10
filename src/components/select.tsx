@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react';
 
 interface Props {
-  accountChange: (person: AccountType | undefined) => void;
+  accountChange: (person: AccountType) => void;
 }
 
 type SelectChange = ChangeEvent<HTMLSelectElement>;
@@ -17,7 +17,7 @@ const Select = ({ accountChange }: Props) => {
     },
     {
       name: 'The hound',
-      value: 'the hound',
+      value: 'hound',
       img: '',
       id: 2,
     },
@@ -29,18 +29,18 @@ const Select = ({ accountChange }: Props) => {
     },
     {
       name: 'jon snow',
-      value: 'jon snow',
+      value: 'snow',
       img: '',
       id: 4,
     },
   ];
   const selectChange = (event: SelectChange) => {
     const accountId = event.target.value;
-    const profile = accountData?.find(
-      (account) => account?.id === Number(accountId)
+    const profile = accountData.filter(
+      (account: AccountType) => account.id === Number(accountId)
     );
 
-    accountChange(profile);
+    accountChange(profile[0]);
   };
 
   return (

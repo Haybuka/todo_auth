@@ -1,9 +1,17 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
+import { AccountType } from '../pages/login';
+import { useNavigate } from 'react-router-dom';
+
+interface Props {
+  account: AccountType;
+}
 
 type FormChange = ChangeEvent<HTMLInputElement>;
 type FormSubmit = FormEvent<HTMLFormElement>;
-const LoginForm = () => {
+const LoginForm = ({ account }: Props) => {
   const [password, setPassword] = useState('');
+  const [routeName, setRouteName] = useState('/');
+  const navigate = useNavigate();
 
   const handleChange = (event: FormChange) => {
     setPassword(event.target.value);
@@ -11,7 +19,8 @@ const LoginForm = () => {
 
   const handleSubmit = (event: FormSubmit) => {
     event.preventDefault();
-    console.log({ password });
+    setRouteName(account.value);
+    navigate(`${routeName}`);
   };
 
   return (
